@@ -3,10 +3,12 @@ import com.citius.JsonSerializable;
 
 @JsonSerializable
 public class Person {
-//	@JsonElement(key="age")
+	@JsonElement
 	private int age;
 	@JsonElement(key = "myname")
 	private String name;
+	@JsonElement
+	private String profession;
 	
 	public int getAge() {
 		return age;

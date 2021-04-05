@@ -18,11 +18,11 @@ public class Jsonconvertor {
 //			for (Method method : clazz.getDeclaredMethods()) {
 //				if(method.isAnnotationPresent(annotationClass))
 //			}
-			Map<String, String> jsonElementsMap = new HashMap<>();
+			Map<String, Object> jsonElementsMap = new HashMap<>();
 			for (Field field : clazz.getDeclaredFields()) {
 				field.setAccessible(true);
 				if (field.isAnnotationPresent(JsonElement.class)) {
-					jsonElementsMap.put(getKey(field), (String) field.get(object));
+					jsonElementsMap.put(getKey(field),  field.get(object));
 				}
 			}
 			jsonString = jsonElementsMap.entrySet().stream()
@@ -30,7 +30,7 @@ public class Jsonconvertor {
 					.collect(Collectors.joining(","));
 			return "{" + jsonString + "}";
 		} catch (Exception e) {
-//			e.prin
+			e.printStackTrace();
 		}
 		return jsonString;
 	}
